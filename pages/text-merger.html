@@ -1,0 +1,90 @@
+<!-- Tool 34: Text File Merger HTML Template -->
+<div class="workspace-grid">
+  <!-- Left: Interactive Work Panel -->
+  <section class="work-panel">
+    <label id="txt-merge-dropzone" class="dropzone cursor-pointer">
+      <input type="file" id="txt-merge-input" multiple>
+      <div class="dropzone-icon-circle">
+        <svg class="dropzone-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 16V4m0 0L7 9m5-5 5 5"/><path d="M4 15v5h16v-5"/></svg>
+      </div>
+      <strong>Drop text or code files here</strong>
+      <span>or click to choose from your device</span>
+      <div class="dropzone-badges">
+        <span class="dropzone-badge">TXT</span>
+        <span class="dropzone-badge">CSV</span>
+        <span class="dropzone-badge">LOG</span>
+        <span class="dropzone-badge">MD</span>
+        <span class="dropzone-badge">JSON</span>
+        <span class="dropzone-badge">CODE</span>
+      </div>
+      <small>Combine multiple text documents into one</small>
+    </label>
+
+    <div id="txt-merge-content" class="space-y-6 hidden">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- File List -->
+        <div class="space-y-3">
+          <div class="flex justify-between items-center text-xs font-mono text-slate-400 uppercase tracking-wider">
+            <span>Merge Sequence</span>
+            <span class="text-slate-500 text-[10px]">Use arrows to reorder</span>
+          </div>
+          <div id="txt-merge-file-list" class="space-y-2 max-h-[380px] overflow-y-auto"></div>
+        </div>
+
+        <!-- Merged Output Preview -->
+        <div class="flex flex-col bg-[#17191a] border border-[#303334] rounded overflow-hidden">
+          <div class="p-2.5 bg-[#1e2022] border-b border-[#303334] flex justify-between items-center text-[11px] font-mono uppercase text-slate-400">
+            <span>Merged Preview</span>
+            <span id="txt-merge-stats">0 lines</span>
+          </div>
+          <textarea id="txt-merge-preview" readonly class="w-full flex-1 p-3 bg-black/40 text-slate-200 text-xs font-mono border-none outline-none resize-none"></textarea>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Right: Settings & Action Panel -->
+  <aside class="settings">
+    <div class="settings-head">
+      <span>Delimiter Options</span>
+      <small>01 / 01</small>
+    </div>
+
+    <div class="setting-item">
+      <span class="mb-2 text-xs font-mono text-slate-400 uppercase">File Separator</span>
+      <select id="txt-merge-separator" class="input-dark text-xs">
+        <option value="double-newline" selected>Double Blank Line</option>
+        <option value="newline">Single Line Break</option>
+        <option value="header-banner">Banner with Filename</option>
+        <option value="md-heading">Markdown Heading (## file)</option>
+        <option value="dashed">Dashed Line Break</option>
+        <option value="custom">Custom Text...</option>
+      </select>
+    </div>
+
+    <div id="txt-merge-custom-box" class="setting-item hidden">
+      <span class="mb-2 text-xs font-mono text-slate-400 uppercase">Custom Separator</span>
+      <input type="text" id="txt-merge-custom-text" class="input-dark text-xs font-mono" placeholder="=== NEXT FILE ===">
+    </div>
+
+    <div class="setting-item">
+      <div class="flex justify-between items-center">
+        <span class="text-xs font-mono text-slate-400 uppercase">Clear All</span>
+        <button id="txt-merge-clear-btn" class="btn-secondary py-1 px-3 text-xs hidden">Reset</button>
+      </div>
+    </div>
+
+    <div class="setting-item">
+      <button id="txt-merge-copy-btn" class="btn-secondary w-full py-2 text-xs" disabled>Copy Merged Text</button>
+    </div>
+
+    <div class="privacy-note">
+      Text concats executed inside local browser buffers. Zero bytes sent to server.
+    </div>
+
+    <button id="txt-merge-download-btn" class="primary" disabled>
+      <span>Download Merged File</span>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v12m0 0 5-5m-5 5-5-5"/><path d="M4 20h16"/></svg>
+    </button>
+  </aside>
+</div>

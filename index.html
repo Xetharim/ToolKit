@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>fileTookKit — Files, Refined. Nothing Retained.</title>
+  <meta name="description" content="15 private, high-performance file, document, PDF, and image utilities running 100% locally in your browser.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23315ee7' stroke-width='2'><path d='M6 3h8l4 4v14H6z'/><path d='M14 3v5h5'/></svg>">
+
+  <!-- Tailwind CSS CDN for inner utility controls -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              500: '#315ee7',
+              600: '#264ecc',
+              700: '#1e3ea6'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Client-Side Libraries: Local First (100% Offline) + CDN Fallback -->
+  <script src="js/vendor/pdf-lib.min.js"></script>
+  <script>
+    if (!window.PDFLib) {
+      document.write('<script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"><\/script>');
+    }
+  </script>
+  <script src="js/vendor/jszip.min.js"></script>
+  <script>
+    if (!window.JSZip) {
+      document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"><\/script>');
+    }
+  </script>
+  <script src="js/vendor/marked.min.js"></script>
+  <script>
+    if (!window.marked) {
+      document.write('<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"><\/script>');
+    }
+  </script>
+  <script src="js/vendor/turndown.js"></script>
+  <script>
+    if (!window.TurndownService) {
+      document.write('<script src="https://unpkg.com/turndown/dist/turndown.js"><\/script>');
+    }
+  </script>
+
+  <!-- Modular Stylesheets -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/workspace.css">
+</head>
+<body class="dark">
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <button class="wordmark" onclick="window.app.navigateToDirectory()" aria-label="fileTookKit homepage">
+      FILE<span>TOOKKIT</span>
+    </button>
+    <nav class="header-nav" aria-label="Primary navigation">
+      <button class="header-btn" onclick="window.app.navigateToDirectory()">
+        <svg viewBox="0 0 24 24" class="w-4 h-4"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        <span>All 15 Tools</span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- Main View: Home / Directory -->
+  <main id="home-view" class="concept">
+    <!-- Hero Section -->
+    <section class="hero hero-one">
+      <div class="hero-header-line">
+        <p class="eyebrow">Browser-Native File Workspace</p>
+        <span class="hero-badge">Zero Telemetry • Zero Server Uploads</span>
+      </div>
+      <h1>Files, <i>refined.</i><br>Nothing retained.</h1>
+      <p class="hero-copy">A comprehensive suite of 15 client-side utilities for PDF, image, and document work. Processed entirely in your browser using hardware-accelerated Web APIs.</p>
+      <div class="hero-meta">
+        <span class="edition">Edition 2026.10</span>
+        <div class="hero-category-pills">
+          <span class="cat-pill">5 PDF Tools</span>
+          <span class="cat-pill">5 Image Tools</span>
+          <span class="cat-pill">5 Document & Hash Tools</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Discovery Search & Category Filters -->
+    <div class="discovery">
+      <div class="search-container">
+        <label class="search" for="search-input">
+          <svg class="search-icon" aria-hidden="true" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"></circle><path d="m16 16 4 4"></path></svg>
+          <span class="sr-only">Search utilities</span>
+          <input id="search-input" type="text" placeholder="Find a utility by name, keyword, or format (e.g. PDF, WebP, Crop, Hash)…" autocomplete="off">
+          <button id="search-clear-btn" class="search-clear-btn hidden" type="button" aria-label="Clear search">✕</button>
+          <kbd class="search-kbd" title="Press '/' to focus search">/</kbd>
+        </label>
+      </div>
+      <div class="filters" aria-label="Filter utilities by category">
+        <button class="active" data-category="all">All (15)</button>
+        <button data-category="pdf">PDF (5)</button>
+        <button data-category="image">Image (5)</button>
+        <button data-category="document">Document & Hash (5)</button>
+      </div>
+    </div>
+
+    <!-- Directory Grid -->
+    <section class="directory" aria-labelledby="directory-title">
+      <div class="section-heading">
+        <p id="directory-title">Utility index</p>
+        <span id="tool-count-badge">Showing 15 utilities</span>
+      </div>
+      <div id="tool-grid" class="tool-grid"></div>
+    </section>
+  </main>
+
+  <!-- Workspace View: Active Tool -->
+  <main id="workspace-view" class="workspace" style="display: none;">
+    <!-- Prominent Return & Breadcrumb Bar -->
+    <div class="workspace-nav-bar">
+      <button class="back-btn" onclick="window.app.navigateToDirectory()" aria-label="Return to all utilities">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" class="back-arrow-icon">
+          <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+        <span class="back-text">Back to all tools</span>
+        <kbd class="back-kbd" title="Press Escape to exit tool">[ESC]</kbd>
+      </button>
+
+      <nav class="breadcrumb-trail" aria-label="Tool breadcrumb">
+        <button class="crumb-link" onclick="window.app.navigateToDirectory()">All Tools</button>
+        <span class="crumb-sep">/</span>
+        <span id="breadcrumb-category" class="crumb-cat">Category</span>
+        <span class="crumb-sep">/</span>
+        <span id="breadcrumb-title" class="crumb-current">Tool Name</span>
+      </nav>
+    </div>
+
+    <!-- Workspace Title -->
+    <div class="workspace-title">
+      <div>
+        <span id="active-tool-code">PDF / 21</span>
+        <h1 id="active-tool-title">Tool Name</h1>
+      </div>
+      <p id="active-tool-desc">Tool detail description. Your files are processed locally and never stored.</p>
+    </div>
+
+    <!-- Dynamic Mount for active tool template from pages/ -->
+    <div id="active-tool-mount"></div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <span>© 2026 FILETOOKKIT</span>
+  </footer>
+
+  <!-- Core Scripts -->
+  <script src="js/md5.js"></script>
+  <script src="js/utils.js"></script>
+
+  <!-- Page Templates Registry (Decoupled in pages/*.html) -->
+  <script src="pages/templates.js"></script>
+
+  <!-- 15 Tools Controller Logic -->
+  <script src="js/tools/pdf-merger.js"></script>
+  <script src="js/tools/pdf-splitter.js"></script>
+  <script src="js/tools/pdf-extractor.js"></script>
+  <script src="js/tools/pdf-rotator.js"></script>
+  <script src="js/tools/pdf-compressor.js"></script>
+  <script src="js/tools/image-compressor.js"></script>
+  <script src="js/tools/image-resizer.js"></script>
+  <script src="js/tools/image-cropper.js"></script>
+  <script src="js/tools/image-converter.js"></script>
+  <script src="js/tools/webp-converter.js"></script>
+  <script src="js/tools/size-calculator.js"></script>
+  <script src="js/tools/md-to-html.js"></script>
+  <script src="js/tools/html-to-md.js"></script>
+  <script src="js/tools/text-merger.js"></script>
+  <script src="js/tools/hash-checker.js"></script>
+
+  <!-- App Router & Controller -->
+  <script src="js/app.js"></script>
+</body>
+</html>

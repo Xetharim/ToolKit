@@ -1,0 +1,94 @@
+<!-- Tool 30: WebP Converter HTML Template -->
+<div class="workspace-grid">
+  <!-- Left: Interactive Work Panel -->
+  <section class="work-panel">
+    <label id="webp-dropzone" class="dropzone cursor-pointer">
+      <input type="file" id="webp-input" accept="image/*,.jpg,.jpeg,.png,.webp,.svg,.gif,.avif,.bmp" multiple>
+      <div class="dropzone-icon-circle">
+        <svg class="dropzone-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 16V4m0 0L7 9m5-5 5 5"/><path d="M4 15v5h16v-5"/></svg>
+      </div>
+      <strong>Drop images here for WebP conversion</strong>
+      <span>or click to choose from your device</span>
+      <div class="dropzone-badges">
+        <span class="dropzone-badge">JPG / JPEG</span>
+        <span class="dropzone-badge">PNG</span>
+        <span class="dropzone-badge">WebP</span>
+        <span class="dropzone-badge">SVG</span>
+        <span class="dropzone-badge">GIF</span>
+        <span class="dropzone-badge">AVIF</span>
+      </div>
+      <small>Bidirectional WebP encoding & decoding</small>
+    </label>
+
+    <div id="webp-results-box" class="space-y-4 hidden">
+      <div class="flex justify-between items-center text-xs font-mono text-slate-400 uppercase tracking-wider">
+        <span>Files Queue (<b id="webp-file-count" class="text-white">0</b>)</span>
+        <span>Batch processing</span>
+      </div>
+      <div id="webp-results-list" class="space-y-2 max-h-[400px] overflow-y-auto"></div>
+    </div>
+  </section>
+
+  <!-- Right: Settings & Action Panel -->
+  <aside class="settings">
+    <div class="settings-head">
+      <span>Encoder Profile</span>
+      <small>01 / 01</small>
+    </div>
+
+    <div class="setting-item">
+      <span class="mb-2 text-xs font-mono text-slate-400 uppercase">Conversion Mode</span>
+      <select id="webp-direction" class="input-dark text-xs">
+        <optgroup label="Encode to WebP">
+          <option value="to-webp" selected>Any Image → Modern WebP</option>
+          <option value="png-to-webp">PNG → WebP</option>
+          <option value="jpg-to-webp">JPG / JPEG → WebP</option>
+          <option value="svg-to-webp">SVG → WebP (Crisp Vector Raster)</option>
+          <option value="gif-to-webp">GIF → WebP (Optimized)</option>
+          <option value="avif-to-webp">AVIF → WebP</option>
+        </optgroup>
+        <optgroup label="Decode from WebP">
+          <option value="from-webp-png">WebP → PNG (Lossless)</option>
+          <option value="from-webp-jpg">WebP → JPG / JPEG (Photo)</option>
+          <option value="from-webp-svg">WebP → SVG (Vector Container)</option>
+          <option value="from-webp-gif">WebP → GIF (Graphic)</option>
+          <option value="from-webp-avif">WebP → AVIF (Next-Gen)</option>
+        </optgroup>
+      </select>
+    </div>
+
+    <label id="webp-quality-box" class="setting-item">
+      <span>Quality Level <b id="webp-quality-val" class="font-mono text-indigo-400">85%</b></span>
+      <input type="range" id="webp-quality" min="10" max="100" value="85">
+    </label>
+
+    <label class="toggle-row setting-item">
+      <span>
+        <b>Lossless WebP</b>
+        <small>Pixel-exact compression for logos & graphics</small>
+      </span>
+      <input type="checkbox" id="webp-lossless">
+    </label>
+
+    <div class="setting-item">
+      <div class="flex justify-between items-center">
+        <span class="text-xs font-mono text-slate-400 uppercase">Clear Queue</span>
+        <button id="webp-clear-btn" class="btn-secondary py-1 px-3 text-xs hidden">Reset</button>
+      </div>
+    </div>
+
+    <div class="privacy-note">
+      WebP VP8/VP8L bitstream encoding handled client-side. Zero bytes leave your machine.
+    </div>
+
+    <div class="space-y-2 mt-auto">
+      <button id="webp-run-btn" class="primary w-full" disabled>
+        <span>Run WebP Converter</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+      <button id="webp-zip-btn" class="btn-secondary w-full py-2.5 text-xs hidden">
+        Download WebP Archive (.zip)
+      </button>
+    </div>
+  </aside>
+</div>

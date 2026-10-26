@@ -1,0 +1,435 @@
+/**
+ * fileTookKit - Dedicated Workspace CSS
+ * Fixed layout boundaries, constrained widths, and improved spacing.
+ */
+
+/* Workspace Container - Constrained fixed width */
+.workspace {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 24px clamp(16px, 2.5vw, 32px) 80px;
+  box-sizing: border-box;
+}
+
+/* Workspace Header Title */
+.workspace-title {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 36px;
+  align-items: end;
+  padding: 24px 0 32px;
+  border-bottom: 1px solid var(--line);
+  box-sizing: border-box;
+}
+
+.workspace-title span {
+  font: 500 10px var(--mono);
+  color: #7f9dff;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.workspace-title h1 {
+  font-size: clamp(34px, 4.2vw, 56px);
+  letter-spacing: -0.04em;
+  line-height: 1.02;
+  margin: 8px 0 0;
+  font-weight: 600;
+  color: var(--paper);
+}
+
+.workspace-title p {
+  color: var(--muted);
+  line-height: 1.6;
+  font-size: 13px;
+  margin: 0;
+}
+
+/* Fixed Two-Column Studio Grid */
+.workspace-grid {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  width: 100%;
+  box-sizing: border-box;
+  border-bottom: 1px solid var(--line);
+}
+
+/* Left Work Panel */
+.work-panel {
+  padding: 32px 36px 48px 0;
+  border-right: 1px solid var(--line);
+  min-width: 0; /* Prevents overflow blowout */
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  min-height: 520px;
+}
+
+/* Centered Proportion Dropzone */
+.dropzone {
+  height: 310px;
+  min-height: 310px;
+  max-height: 310px;
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px dashed #3a3e42;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: radial-gradient(circle at 50% 35%, #181a1e 0%, #111214 100%);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 8px;
+  padding: 24px;
+  text-align: center;
+  margin: auto 0; /* Perfectly centers dropzone vertically within .work-panel */
+  position: relative;
+}
+
+.dropzone:hover {
+  border-color: #315ee7;
+  background: radial-gradient(circle at 50% 35%, #1c212a 0%, #121417 100%);
+  box-shadow: 0 0 32px rgba(49, 94, 231, 0.09);
+}
+
+.dropzone input {
+  display: none;
+}
+
+.dropzone-icon-circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(49, 94, 231, 0.12);
+  border: 1px solid rgba(49, 94, 231, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.dropzone:hover .dropzone-icon-circle {
+  transform: translateY(-2px) scale(1.06);
+  background: rgba(49, 94, 231, 0.22);
+  border-color: #315ee7;
+}
+
+.dropzone > svg,
+.dropzone > .dropzone-icon {
+  color: #7f9dff;
+  width: 28px;
+  height: 28px;
+  stroke-width: 1.8;
+  margin-bottom: 12px;
+}
+
+.dropzone-icon-circle svg,
+.dropzone-icon-circle .dropzone-icon {
+  color: #7f9dff;
+  width: 22px;
+  height: 22px;
+  stroke-width: 1.8;
+  margin: 0;
+}
+
+.dropzone strong {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--paper);
+  letter-spacing: -0.01em;
+}
+
+.dropzone span {
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 6px;
+}
+
+.dropzone-badges {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+
+.dropzone-badge {
+  font: 500 10px var(--mono);
+  color: #7c828d;
+  background: #181a1d;
+  border: 1px solid #2d3036;
+  padding: 2.5px 8px;
+  border-radius: 3px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  transition: all 0.15s ease;
+}
+
+.dropzone:hover .dropzone-badge {
+  color: #c4d0e2;
+  border-color: #3e4550;
+}
+
+.dropzone small {
+  font: 400 10px var(--mono);
+  color: var(--muted);
+  margin-top: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* File Row */
+.file-row {
+  height: 64px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  border-radius: 4px;
+  display: grid;
+  grid-template-columns: 36px 1fr auto 36px;
+  align-items: center;
+  gap: 12px;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+
+.file-row > svg {
+  color: var(--muted);
+  width: 20px;
+  height: 20px;
+}
+
+.file-row div:nth-child(2) {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  overflow: hidden;
+}
+
+.file-row strong {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--paper);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.file-row span {
+  color: var(--muted);
+  font: 400 10px var(--mono);
+}
+
+.file-row button {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.15s ease;
+  padding: 4px;
+}
+
+.file-row button:hover {
+  color: #f87171;
+}
+
+/* Fixed Preview Stages */
+.preview-stage {
+  height: 380px;
+  min-height: 380px;
+  max-height: 380px;
+  width: 100%;
+  box-sizing: border-box;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  overflow: hidden;
+}
+
+/* Right Settings Sidebar - Strictly 360px Fixed Width */
+.settings {
+  width: 360px;
+  min-width: 360px;
+  max-width: 360px;
+  padding: 32px 0 48px 36px;
+  display: flex;
+  flex-direction: column;
+  min-height: 480px;
+  box-sizing: border-box;
+}
+
+.settings-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 14px;
+  font: 500 11px var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--paper);
+}
+
+.settings-head small {
+  color: var(--muted);
+}
+
+.setting-item,
+.settings > label {
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+  display: block;
+  box-sizing: border-box;
+}
+
+.setting-item > span,
+.settings label > span {
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  color: var(--paper);
+}
+
+.setting-item b,
+.settings label b {
+  font-weight: 500;
+}
+
+.settings input[type="range"] {
+  width: 100%;
+  accent-color: var(--blue);
+  margin-top: 14px;
+  cursor: pointer;
+}
+
+.toggle-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.toggle-row span {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.toggle-row small {
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.toggle-row input {
+  accent-color: var(--blue);
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  margin-top: 2px;
+}
+
+.privacy-note {
+  color: var(--muted);
+  font: 400 10px/1.6 var(--mono);
+  margin-top: 24px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--line);
+}
+
+/* Primary Action Button */
+.primary {
+  margin-top: 24px;
+  min-height: 50px;
+  height: 50px;
+  width: 100%;
+  background: var(--blue);
+  color: #ffffff;
+  border: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 18px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.15s ease, opacity 0.15s ease;
+  box-sizing: border-box;
+}
+
+.primary:hover:not(:disabled) {
+  background: var(--blue-hover);
+}
+
+.primary:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.primary.complete {
+  background: var(--paper);
+  color: var(--bg);
+}
+
+/* Responsive Collapses */
+@media (max-width: 960px) {
+  .workspace-title {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .workspace-grid {
+    grid-template-columns: 1fr;
+  }
+  .work-panel {
+    border-right: 0;
+    padding-right: 0;
+    padding-bottom: 32px;
+  }
+  .settings {
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+    padding-left: 0;
+    border-top: 1px solid var(--line);
+  }
+}
+
+@media (max-width: 640px) {
+  .work-panel {
+    min-height: auto;
+    padding-top: 16px;
+    padding-bottom: 24px;
+  }
+  .dropzone {
+    height: 250px;
+    min-height: 250px;
+    max-height: 250px;
+    padding: 16px;
+  }
+  .dropzone-badges {
+    gap: 4px;
+    margin-top: 10px;
+  }
+  .dropzone-badge {
+    font-size: 9px;
+    padding: 2px 6px;
+  }
+  .settings {
+    padding-top: 24px;
+    min-height: auto;
+  }
+}

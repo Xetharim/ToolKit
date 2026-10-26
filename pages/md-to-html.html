@@ -1,0 +1,67 @@
+<!-- Tool 32: Markdown to HTML Converter HTML Template -->
+<div class="workspace-grid">
+  <!-- Left: Interactive Work Panel -->
+  <section class="work-panel">
+    <div class="flex items-center justify-between mb-3 text-xs font-mono">
+      <div class="flex items-center gap-2">
+        <button id="md-tab-rendered" class="tab-btn active">Rendered View</button>
+        <button id="md-tab-code" class="tab-btn">HTML Code</button>
+      </div>
+      <span id="md-input-stats" class="text-slate-400">0 words • 0 chars</span>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 h-[480px]">
+      <div class="flex flex-col bg-[#17191a] border border-[#303334] rounded overflow-hidden">
+        <div class="p-2.5 bg-[#1e2022] border-b border-[#303334] text-[11px] font-mono uppercase text-slate-400">
+          Markdown Source
+        </div>
+        <textarea id="md-input" class="w-full flex-1 p-3 bg-transparent text-xs font-mono text-slate-200 border-none outline-none resize-none" placeholder="# Welcome to Markdown&#10;&#10;Write here..."></textarea>
+      </div>
+
+      <div class="flex flex-col bg-[#17191a] border border-[#303334] rounded overflow-hidden">
+        <div class="p-2.5 bg-[#1e2022] border-b border-[#303334] text-[11px] font-mono uppercase text-slate-400">
+          Preview / Generated
+        </div>
+        <div id="md-preview-view" class="flex-1 p-4 overflow-y-auto prose prose-invert max-w-none text-xs text-slate-300"></div>
+        <div id="md-code-view" class="flex-1 overflow-hidden hidden">
+          <textarea id="md-raw-code" readonly class="w-full h-full p-3 bg-black/40 text-emerald-400 text-xs font-mono border-none outline-none resize-none"></textarea>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Right: Settings & Action Panel -->
+  <aside class="settings">
+    <div class="settings-head">
+      <span>Export Options</span>
+      <small>01 / 01</small>
+    </div>
+
+    <label class="toggle-row setting-item">
+      <span>
+        <b>Wrap HTML5 Template</b>
+        <small>Includes modern responsive styles & typography</small>
+      </span>
+      <input type="checkbox" id="md-wrap-doc" checked>
+    </label>
+
+    <div class="setting-item">
+      <span class="mb-2 text-xs font-mono text-slate-400 uppercase">Load File</span>
+      <button id="md-load-file-btn" class="btn-secondary w-full py-2 text-xs">Upload .md Document</button>
+      <input type="file" id="md-file-input" accept=".md,.markdown,.txt" class="hidden">
+    </div>
+
+    <div class="setting-item">
+      <button id="md-copy-btn" class="btn-secondary w-full py-2 text-xs">Copy Raw HTML</button>
+    </div>
+
+    <div class="privacy-note">
+      Markdown parsing happens in browser script runtime.
+    </div>
+
+    <button id="md-download-btn" class="primary">
+      <span>Download HTML Document</span>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v12m0 0 5-5m-5 5-5-5"/><path d="M4 20h16"/></svg>
+    </button>
+  </aside>
+</div>

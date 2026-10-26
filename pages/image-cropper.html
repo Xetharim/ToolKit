@@ -1,0 +1,97 @@
+<!-- Tool 28: Image Cropper HTML Template -->
+<div class="workspace-grid">
+  <!-- Left: Interactive Work Panel -->
+  <section class="work-panel">
+    <label id="img-crop-dropzone" class="dropzone cursor-pointer">
+      <input type="file" id="img-crop-input" accept="image/*,.jpg,.jpeg,.png,.webp,.svg,.gif,.avif">
+      <div class="dropzone-icon-circle">
+        <svg class="dropzone-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 16V4m0 0L7 9m5-5 5 5"/><path d="M4 15v5h16v-5"/></svg>
+      </div>
+      <strong>Drop image file here to crop</strong>
+      <span>or click to choose from your device</span>
+      <div class="dropzone-badges">
+        <span class="dropzone-badge">JPG</span>
+        <span class="dropzone-badge">PNG</span>
+        <span class="dropzone-badge">WebP</span>
+        <span class="dropzone-badge">SVG</span>
+        <span class="dropzone-badge">AVIF</span>
+      </div>
+      <small>Interactive bounding box & aspect ratio locks</small>
+    </label>
+
+    <div id="img-crop-workspace" class="space-y-6 hidden">
+      <div class="file-row">
+        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v5h5"/></svg>
+        <div>
+          <strong id="img-crop-filename">photo.png</strong>
+          <span id="img-crop-orig-info">0 × 0px</span>
+        </div>
+        <div class="text-right">
+          <span id="img-crop-dim-badge" class="badge badge-image">0 × 0</span>
+        </div>
+        <button id="img-crop-reset-btn" title="Remove file">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></svg>
+        </button>
+      </div>
+
+      <!-- Interactive Crop Stage -->
+      <div class="p-4 bg-[#17191a] border border-[#303334] rounded flex items-center justify-center min-h-[380px] overflow-hidden select-none">
+        <div id="img-crop-stage-container" class="relative inline-block">
+          <canvas id="img-crop-main-canvas" class="block max-h-[400px] max-w-full"></canvas>
+          <!-- Interactive overlay box -->
+          <div id="img-crop-box" class="absolute border-2 border-indigo-400 bg-indigo-500/10 cursor-move" style="top: 0; left: 0; width: 100px; height: 100px;">
+            <div class="absolute -top-1.5 -left-1.5 w-3 h-3 bg-white border border-indigo-600 rounded-sm cursor-nwse-resize" data-handle="tl"></div>
+            <div class="absolute -top-1.5 -right-1.5 w-3 h-3 bg-white border border-indigo-600 rounded-sm cursor-nesw-resize" data-handle="tr"></div>
+            <div class="absolute -bottom-1.5 -left-1.5 w-3 h-3 bg-white border border-indigo-600 rounded-sm cursor-nesw-resize" data-handle="bl"></div>
+            <div class="absolute -bottom-1.5 -right-1.5 w-3 h-3 bg-white border border-indigo-600 rounded-sm cursor-nwse-resize" data-handle="br"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Right: Settings & Action Panel -->
+  <aside class="settings">
+    <div class="settings-head">
+      <span>Crop Settings</span>
+      <small>01 / 01</small>
+    </div>
+
+    <div class="setting-item">
+      <span class="mb-2 text-xs font-mono text-slate-400 uppercase">Aspect Ratio</span>
+      <div class="grid grid-cols-3 gap-2">
+        <button class="crop-ratio-btn btn-secondary py-1 text-xs active bg-white text-black" data-ratio="free">Free</button>
+        <button class="crop-ratio-btn btn-secondary py-1 text-xs" data-ratio="1:1">1:1</button>
+        <button class="crop-ratio-btn btn-secondary py-1 text-xs" data-ratio="16:9">16:9</button>
+        <button class="crop-ratio-btn btn-secondary py-1 text-xs" data-ratio="4:3">4:3</button>
+        <button class="crop-ratio-btn btn-secondary py-1 text-xs" data-ratio="9:16">9:16</button>
+        <button class="crop-ratio-btn btn-secondary py-1 text-xs" data-ratio="3:2">3:2</button>
+      </div>
+    </div>
+
+    <div class="setting-item">
+      <span class="mb-2 text-xs font-mono text-slate-400 uppercase">Crop Preview</span>
+      <div class="w-full flex items-center justify-center bg-[#17191a] border border-[#303334] rounded p-2 min-h-[120px]">
+        <canvas id="img-crop-preview-canvas" class="max-h-[110px] max-w-full rounded object-contain shadow-sm"></canvas>
+      </div>
+    </div>
+
+    <div class="setting-item">
+      <span class="mb-2 text-xs font-mono text-slate-400 uppercase">Output Format</span>
+      <select id="img-crop-format" class="input-dark text-xs">
+        <option value="image/webp" selected>WebP (Efficient)</option>
+        <option value="image/png">PNG (Lossless)</option>
+        <option value="image/jpeg">JPEG (Photo)</option>
+      </select>
+    </div>
+
+    <div class="privacy-note">
+      Pixel buffer clipping is performed locally. Zero cloud round-trips.
+    </div>
+
+    <button id="img-crop-run-btn" class="primary" disabled>
+      <span>Crop & Download</span>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v12m0 0 5-5m-5 5-5-5"/><path d="M4 20h16"/></svg>
+    </button>
+  </aside>
+</div>

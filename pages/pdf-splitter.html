@@ -1,0 +1,91 @@
+<!-- Tool 22: PDF Splitter HTML Template -->
+<div class="workspace-grid">
+  <!-- Left: Interactive Work Panel -->
+  <section class="work-panel">
+    <label id="pdf-split-dropzone" class="dropzone cursor-pointer">
+      <input type="file" id="pdf-split-input" accept=".pdf,application/pdf">
+      <div class="dropzone-icon-circle">
+        <svg class="dropzone-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 16V4m0 0L7 9m5-5 5 5"/><path d="M4 15v5h16v-5"/></svg>
+      </div>
+      <strong>Drop PDF document here</strong>
+      <span>or click to choose from your device</span>
+      <div class="dropzone-badges">
+        <span class="dropzone-badge">Custom Ranges</span>
+        <span class="dropzone-badge">Extract All</span>
+        <span class="dropzone-badge">ZIP Export</span>
+      </div>
+      <small>Split by page ranges or extract all pages</small>
+    </label>
+
+    <div id="pdf-split-workspace" class="space-y-6 hidden">
+      <div class="file-row">
+        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v5h5"/></svg>
+        <div>
+          <strong id="pdf-split-filename">document.pdf</strong>
+          <span id="pdf-split-filesize">0 MB • 0 pages</span>
+        </div>
+        <div class="text-right">
+          <span class="badge badge-pdf">Loaded</span>
+        </div>
+        <button id="pdf-split-reset-btn" title="Remove file">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></svg>
+        </button>
+      </div>
+
+      <!-- Page Previews Overview Grid -->
+      <div class="space-y-3">
+        <div class="flex items-center justify-between text-xs font-mono text-slate-400 uppercase tracking-wider">
+          <span>Document Overview</span>
+          <span><b id="pdf-split-page-count" class="text-white">0</b> total pages</span>
+        </div>
+        <div id="pdf-split-page-grid" class="grid grid-cols-4 sm:grid-cols-6 gap-3 max-h-[340px] overflow-y-auto p-1"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Right: Settings & Action Panel -->
+  <aside class="settings">
+    <div class="settings-head">
+      <span>Split Configuration</span>
+      <small id="pdf-split-step-badge">Step 01</small>
+    </div>
+
+    <!-- Split Mode Selector -->
+    <div class="setting-item">
+      <span class="mb-3 text-xs uppercase font-mono text-slate-400">Splitting Strategy</span>
+      <div class="space-y-2">
+        <label class="p-3 border border-[#303334] hover:border-indigo-500 bg-[#17191a] rounded cursor-pointer flex items-start gap-3 transition-colors">
+          <input type="radio" name="pdf-split-mode" value="ranges" checked class="mt-1 accent-indigo-600">
+          <div>
+            <p class="text-xs font-semibold text-white">Custom Page Ranges</p>
+            <p class="text-[11px] text-slate-400 mt-0.5">Separate into groups (e.g. <code class="text-indigo-400 font-mono">1-3, 4-6, 7</code>)</p>
+          </div>
+        </label>
+
+        <label class="p-3 border border-[#303334] hover:border-indigo-500 bg-[#17191a] rounded cursor-pointer flex items-start gap-3 transition-colors">
+          <input type="radio" name="pdf-split-mode" value="all" class="mt-1 accent-indigo-600">
+          <div>
+            <p class="text-xs font-semibold text-white">Extract Every Page</p>
+            <p class="text-[11px] text-slate-400 mt-0.5">Save every page as a single standalone PDF (packaged in ZIP)</p>
+          </div>
+        </label>
+      </div>
+    </div>
+
+    <!-- Range Input Field -->
+    <div id="pdf-split-range-box" class="setting-item">
+      <span><b>Specify Ranges</b><small id="pdf-split-range-hint" class="text-indigo-400 font-mono">Pages 1 - 0</small></span>
+      <input type="text" id="pdf-split-range-input" class="input-dark mt-3" placeholder="e.g. 1-2, 3-5, 6">
+      <small class="text-slate-500 text-[11px] mt-2 block">Comma-separated ranges or single page numbers.</small>
+    </div>
+
+    <div class="privacy-note">
+      Document streams are extracted in hardware memory without external network calls.
+    </div>
+
+    <button id="pdf-split-run-btn" class="primary" disabled>
+      <span id="pdf-split-btn-label">Run PDF Splitter</span>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </button>
+  </aside>
+</div>

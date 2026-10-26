@@ -1,0 +1,56 @@
+<!-- Tool 33: HTML to Markdown Converter HTML Template -->
+<div class="workspace-grid">
+  <!-- Left: Interactive Work Panel -->
+  <section class="work-panel">
+    <div class="flex items-center justify-between mb-3 text-xs font-mono">
+      <span class="uppercase text-slate-400">HTML Source Input</span>
+      <span id="html-stats" class="text-slate-400">0 chars</span>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 h-[480px]">
+      <div class="flex flex-col bg-[#17191a] border border-[#303334] rounded overflow-hidden">
+        <div class="p-2.5 bg-[#1e2022] border-b border-[#303334] text-[11px] font-mono uppercase text-slate-400">
+          Paste HTML Markup
+        </div>
+        <textarea id="html-input" class="w-full flex-1 p-3 bg-transparent text-xs font-mono text-slate-200 border-none outline-none resize-none" placeholder="<p>Paste HTML here...</p>"></textarea>
+      </div>
+
+      <div class="flex flex-col bg-[#17191a] border border-[#303334] rounded overflow-hidden">
+        <div class="p-2.5 bg-[#1e2022] border-b border-[#303334] text-[11px] font-mono uppercase text-slate-400">
+          Clean Markdown Output
+        </div>
+        <textarea id="md-output" readonly class="w-full flex-1 p-3 bg-black/40 text-slate-100 text-xs font-mono border-none outline-none resize-none"></textarea>
+      </div>
+    </div>
+  </section>
+
+  <!-- Right: Settings & Action Panel -->
+  <aside class="settings">
+    <div class="settings-head">
+      <span>Converter Options</span>
+      <small>01 / 01</small>
+    </div>
+
+    <div class="setting-item">
+      <button id="html-load-file-btn" class="btn-secondary w-full py-2 text-xs">Upload HTML Document</button>
+      <input type="file" id="html-file-input" accept=".html,.htm,.txt" class="hidden">
+    </div>
+
+    <div class="setting-item">
+      <button id="html-paste-demo" class="btn-secondary w-full py-2 text-xs">Insert Sample Markup</button>
+    </div>
+
+    <div class="setting-item">
+      <button id="html-copy-btn" class="btn-secondary w-full py-2 text-xs">Copy Markdown</button>
+    </div>
+
+    <div class="privacy-note">
+      DOM traversal and Markdown generation run strictly client-side.
+    </div>
+
+    <button id="html-download-btn" class="primary">
+      <span>Download .md Document</span>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v12m0 0 5-5m-5 5-5-5"/><path d="M4 20h16"/></svg>
+    </button>
+  </aside>
+</div>

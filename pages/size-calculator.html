@@ -1,0 +1,112 @@
+<!-- Tool 31: File Size Calculator HTML Template -->
+<div class="workspace-grid">
+  <!-- Left: Interactive Work Panel -->
+  <section class="work-panel">
+    <label id="calc-dropzone" class="dropzone cursor-pointer mb-6">
+      <input type="file" id="calc-file-input">
+      <div class="dropzone-icon-circle">
+        <svg class="dropzone-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 16V4m0 0L7 9m5-5 5 5"/><path d="M4 15v5h16v-5"/></svg>
+      </div>
+      <strong>Drop any file here to calculate exact size</strong>
+      <span>or click to choose from your device</span>
+      <div class="dropzone-badges">
+        <span class="dropzone-badge">Decimal</span>
+        <span class="dropzone-badge">Binary IEC</span>
+        <span class="dropzone-badge">4KB Sectors</span>
+        <span class="dropzone-badge">Transfer Times</span>
+      </div>
+      <small>Inspect binary & decimal storage metrics</small>
+    </label>
+
+    <!-- Metric Grid -->
+    <div class="space-y-4">
+      <span class="text-xs font-mono uppercase text-slate-400 tracking-wider">Storage Representation</span>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        <div class="p-3 bg-[#17191a] border border-[#303334] rounded">
+          <span class="text-[10px] font-mono uppercase text-slate-500">Bytes</span>
+          <p id="calc-res-bytes" class="text-sm font-bold font-mono text-white mt-1 break-all">0 B</p>
+        </div>
+        <div class="p-3 bg-[#17191a] border border-[#303334] rounded">
+          <span class="text-[10px] font-mono uppercase text-slate-500">Total Bits</span>
+          <p id="calc-res-bits" class="text-sm font-bold font-mono text-white mt-1 break-all">0 bits</p>
+        </div>
+        <div class="p-3 bg-[#17191a] border border-[#303334] rounded">
+          <span class="text-[10px] font-mono uppercase text-slate-500">KB / KiB</span>
+          <p id="calc-res-kb" class="text-sm font-bold font-mono text-white mt-1 break-all">0 KB</p>
+        </div>
+        <div class="p-3 bg-[#17191a] border border-[#303334] rounded">
+          <span class="text-[10px] font-mono uppercase text-slate-500">MB / MiB</span>
+          <p id="calc-res-mb" class="text-sm font-bold font-mono text-white mt-1 break-all">0 MB</p>
+        </div>
+        <div class="p-3 bg-[#17191a] border border-[#303334] rounded">
+          <span class="text-[10px] font-mono uppercase text-slate-500">GB / GiB</span>
+          <p id="calc-res-gb" class="text-sm font-bold font-mono text-white mt-1 break-all">0 GB</p>
+        </div>
+        <div class="p-3 bg-[#17191a] border border-[#303334] rounded">
+          <span class="text-[10px] font-mono uppercase text-slate-500">TB / TiB</span>
+          <p id="calc-res-tb" class="text-sm font-bold font-mono text-white mt-1 break-all">0 TB</p>
+        </div>
+        <div class="p-3 bg-[#17191a] border border-[#303334] rounded">
+          <span class="text-[10px] font-mono uppercase text-slate-500">4KB Sectors</span>
+          <p id="calc-res-clusters" class="text-sm font-bold font-mono text-indigo-400 mt-1 break-all">0</p>
+        </div>
+        <div class="p-3 bg-[#17191a] border border-[#303334] rounded">
+          <span class="text-[10px] font-mono uppercase text-slate-500">Disk Footprint</span>
+          <p id="calc-res-ondisk" class="text-sm font-bold font-mono text-indigo-400 mt-1 break-all">0 B</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Transfer Times -->
+    <div class="space-y-3 mt-6">
+      <span class="text-xs font-mono uppercase text-slate-400 tracking-wider">Estimated Transfer Speeds</span>
+      <div class="overflow-x-auto rounded border border-[#303334] bg-[#17191a]">
+        <table class="w-full text-left text-xs font-mono">
+          <thead class="bg-[#1e2022] text-slate-400 text-[10px] uppercase">
+            <tr>
+              <th class="p-2.5">Connection Channel</th>
+              <th class="p-2.5">Speed</th>
+              <th class="p-2.5">Transfer Time</th>
+            </tr>
+          </thead>
+          <tbody id="calc-transfer-tbody" class="divide-y divide-[#2a2d2f]"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Right: Settings & Action Panel -->
+  <aside class="settings">
+    <div class="settings-head">
+      <span>Manual Input & Media</span>
+      <small>01 / 01</small>
+    </div>
+
+    <div class="setting-item">
+      <span class="mb-2 text-xs font-mono text-slate-400 uppercase">Input Custom Size</span>
+      <div class="flex gap-2">
+        <input type="number" id="calc-manual-val" value="50" min="0" step="any" class="input-dark font-mono text-xs flex-1">
+        <select id="calc-manual-unit" class="input-dark font-mono text-xs w-28 shrink-0">
+          <option value="B">B</option>
+          <option value="KB">KB</option>
+          <option value="KiB">KiB</option>
+          <option value="MB" selected>MB</option>
+          <option value="MiB">MiB</option>
+          <option value="GB">GB</option>
+          <option value="GiB">GiB</option>
+          <option value="TB">TB</option>
+        </select>
+      </div>
+      <p id="calc-active-file-label" class="text-[11px] font-mono text-slate-400 mt-2 truncate">Manual size calculation</p>
+    </div>
+
+    <div class="setting-item">
+      <span><b>Storage Equivalents</b></span>
+      <div id="calc-media-fits" class="space-y-1.5 mt-2 text-xs font-mono text-slate-400"></div>
+    </div>
+
+    <div class="privacy-note">
+      Exact byte calculations evaluated completely in client runtime.
+    </div>
+  </aside>
+</div>

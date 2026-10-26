@@ -1,0 +1,57 @@
+<!-- Tool 21: PDF Merger HTML Template -->
+<div class="workspace-grid">
+  <!-- Left: Interactive Work Panel -->
+  <section class="work-panel">
+    <label id="pdf-merger-dropzone" class="dropzone cursor-pointer">
+      <input type="file" id="pdf-merger-input" accept=".pdf,application/pdf" multiple>
+      <div class="dropzone-icon-circle">
+        <svg class="dropzone-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 16V4m0 0L7 9m5-5 5 5"/><path d="M4 15v5h16v-5"/></svg>
+      </div>
+      <strong>Drop multiple PDF files here</strong>
+      <span>or click to choose from your device</span>
+      <div class="dropzone-badges">
+        <span class="dropzone-badge">PDF</span>
+        <span class="dropzone-badge">Multi-File</span>
+        <span class="dropzone-badge">Reorderable</span>
+      </div>
+      <small>Combine 2 or more documents into one</small>
+    </label>
+
+    <div id="pdf-merger-list-container" class="space-y-4 hidden">
+      <div class="flex justify-between items-center text-xs font-mono text-slate-400 uppercase tracking-wider">
+        <span>Documents to Merge (<b id="pdf-merger-count" class="text-white">0</b>)</span>
+        <span>Drag or click arrows to reorder</span>
+      </div>
+      <div id="pdf-merger-file-list" class="space-y-2 max-h-[420px] overflow-y-auto"></div>
+    </div>
+  </section>
+
+  <!-- Right: Settings & Action Panel -->
+  <aside class="settings">
+    <div class="settings-head">
+      <span>Merge Setup</span>
+      <small>01 / 01</small>
+    </div>
+
+    <div class="setting-item">
+      <span><b>Queue Status</b><small id="pdf-merger-queue-stat" class="font-mono text-indigo-400">0 files</small></span>
+      <p class="text-xs text-slate-400 mt-2">Documents will be combined in the exact top-to-bottom sequence shown on the left.</p>
+    </div>
+
+    <div class="setting-item">
+      <div class="flex justify-between items-center">
+        <span class="text-xs font-mono text-slate-400 uppercase">Clear All</span>
+        <button id="pdf-merger-clear-btn" class="btn-secondary py-1 px-3 text-xs hidden">Reset Queue</button>
+      </div>
+    </div>
+
+    <div class="privacy-note">
+      Documents are combined in local browser memory. Zero bytes leave your machine.
+    </div>
+
+    <button id="pdf-merger-run-btn" class="primary" disabled>
+      <span id="pdf-merger-btn-label">Merge All PDFs</span>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </button>
+  </aside>
+</div>

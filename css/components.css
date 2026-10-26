@@ -1,0 +1,122 @@
+/**
+ * fileTookKit - Core Interactive Components
+ */
+
+/* File List Item (Queue Rows) */
+.file-list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  margin-bottom: 8px;
+  border-radius: 4px;
+  transition: all 0.15s ease;
+}
+
+.file-list-item:hover {
+  border-color: var(--line-light);
+  background: var(--surface-2);
+}
+
+/* Secondary Action Button */
+.btn-secondary {
+  background-color: transparent;
+  color: var(--paper);
+  border: 1px solid var(--line);
+  padding: 8px 14px;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 11px;
+  font-family: var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all 0.15s ease;
+  cursor: pointer;
+}
+
+.btn-secondary:hover:not(:disabled) {
+  border-color: var(--blue);
+  color: #ffffff;
+  background: rgba(49, 94, 231, 0.1);
+}
+
+.btn-secondary:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Visual Page Preview Cards (PDF Tools) */
+.page-preview-card {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.page-preview-card:hover {
+  border-color: #7898ff;
+  background: var(--surface-2);
+}
+
+.page-preview-card.selected {
+  border-color: var(--blue);
+  background: rgba(49, 94, 231, 0.14);
+}
+
+/* Tab Switcher (Markdown & Document Tools) */
+.tab-btn {
+  padding: 6px 14px;
+  border-radius: 4px;
+  font-family: var(--mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  transition: all 0.15s ease;
+  border: 1px solid var(--line);
+  background: transparent;
+  cursor: pointer;
+}
+
+.tab-btn.active {
+  background-color: var(--paper);
+  color: var(--bg);
+  border-color: var(--paper);
+  font-weight: 600;
+}
+
+.tab-btn:hover:not(.active) {
+  color: var(--paper);
+  border-color: var(--line-light);
+}
+
+/* Status & Category Badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: 3px;
+  font-size: 10px;
+  font-family: var(--mono);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.badge-pdf { background-color: rgba(239, 68, 68, 0.18); color: #fca5a5; border: 1px solid rgba(239, 68, 68, 0.3); }
+.badge-image { background-color: rgba(49, 94, 231, 0.18); color: #93c5fd; border: 1px solid rgba(49, 94, 231, 0.3); }
+.badge-text { background-color: rgba(168, 85, 247, 0.18); color: #d8b4fe; border: 1px solid rgba(168, 85, 247, 0.3); }
+.badge-calc { background-color: rgba(16, 185, 129, 0.18); color: #86efac; border: 1px solid rgba(16, 185, 129, 0.3); }
